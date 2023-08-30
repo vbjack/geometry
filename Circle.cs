@@ -14,11 +14,13 @@
             if (Radius < 0)
                 throw new ArgumentException("Radius cannot be negative");
 
-            // Area will be more than max value
-            if (Radius > 7.564545572282618E+153)
+            if (Radius >= double.MaxValue)
                 throw new ArgumentException("Radius is too large to be represented as a double");
 
             double area = Math.PI * Math.Pow(Radius, 2);
+
+            if (double.IsInfinity(area))
+                throw new ArgumentException("Area is too large to be represented as a double");
 
             return area;
         }
